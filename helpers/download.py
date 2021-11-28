@@ -29,8 +29,9 @@ async def download_file(client, message):
         reply_to_message_id=media.message_id
     )
     filetype = media.document or media.video
-    if media.message.caption:
-        TT = media.caption
+    if media.caption:
+        if len(media.caption) <= 32:
+            TT = media.caption
     else:
         TT = "@madresehahlebait"
     
