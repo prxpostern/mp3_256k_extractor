@@ -12,7 +12,7 @@ from script import Script
 
 from helpers.progress import PRGRS
 from helpers.tools import clean_up
-from helpers.download import download_file, DATA, download_url_link
+from helpers.download import download_file, DATA, TT, download_url_link
 from helpers.ffmpeg import extract_audio, extract_subtitle
 
 
@@ -115,7 +115,8 @@ async def cb_handler(client, query):
         try:
             stream_type, mapping, keyword = query.data.split('_')
             data = DATA[keyword][int(mapping)]
-            await extract_audio(client, query.message, data)
+            title = TT
+            await extract_audio(client, query.message, data, title)
         except:
             await query.message.edit_text("**Details Not Found**")   
 
