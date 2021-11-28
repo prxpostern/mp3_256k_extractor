@@ -27,7 +27,7 @@ async def download_file(client, message):
         
     msg = await client.send_message(
         chat_id=message.chat.id,
-        text=f"**Downloading your file to server...\n{TT}**",
+        text=f"**Downloading your file to server...**\n\n**Title:** `{TT}`",
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton(text="Check Progress", callback_data="progress_msg")]
         ]),
@@ -112,7 +112,7 @@ async def download_url_link(client, message):
     
     msg = await client.send_message(
         chat_id=m.chat.id,
-        text="**Downloading your Link to Server...**",
+        text=f"**Downloading your file to server...**\n\n**Title:** `{TT}`",
         reply_to_message_id=m.message_id
     )
     
