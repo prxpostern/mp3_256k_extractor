@@ -30,7 +30,7 @@ async def download_file(client, message):
     )
     filetype = media.document or media.video
     if media.message.caption:
-        TT = media.message.caption
+        TT = media.caption
     else:
         TT = "@madresehahlebait"
     
