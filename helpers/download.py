@@ -12,6 +12,7 @@ from helpers.tools import execute, clean_up
 from helpers.download_from_url import download_link
 
 DATA = {}
+TT = ""
 
 async def download_file(client, message):
     media = message.reply_to_message
@@ -28,9 +29,9 @@ async def download_file(client, message):
         reply_to_message_id=media.message_id
     )
     filetype = media.document or media.video
-
+    TT = media.message.caption
+    
     c_time = time.time()
-
     download_location = await client.download_media(
         message=media,
         progress=progress_func,
@@ -97,11 +98,13 @@ async def download_url_link(client, message):
         link, filename = link.split('|')
         link = link.strip()
         filename = filename.strip()
+        filename = filename.replace('%40','@')
         dl_path = os.path.join(f'./{filename}')
     else:
         link = link.strip()
         filename = os.path.basename(link)
-        dl_path = os.path.join("./", os.path.basename(link))
+        filename = filename.replace('%40','@')
+        dl_path = os.path.join(f'./{filename}')
     
     msg = await client.send_message(
         chat_id=m.chat.id,
