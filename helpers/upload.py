@@ -14,7 +14,7 @@ from helpers.progress import progress_func
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-async def upload_audio(client, message, file_loc, title2):
+async def upload_audio(client, message, file_loc):
 
     msg = await message.edit_text(
         text="**Uploading extracted stream...**",
@@ -22,7 +22,7 @@ async def upload_audio(client, message, file_loc, title2):
             [[InlineKeyboardButton(text="Progress", callback_data="progress_msg")]])
     )
 
-    title = title2
+    #title = title2
     artist = "حسن اللهیاری"
     duration = 0
 
@@ -57,7 +57,7 @@ async def upload_audio(client, message, file_loc, title2):
         )
     except Exception as e:
         print(e)     
-        await msg.edit_text(f"**Some Error Occurred.\n\n{e}**")   
+        await msg.edit_text(f"**Some Error Occurred.\nTrying again in 3 seconds...**\n\n{e}**")   
         return True
 
     await msg.delete()
