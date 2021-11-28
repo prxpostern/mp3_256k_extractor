@@ -21,10 +21,11 @@ async def extract_audio(client, message, data):
     
 
     await clean_up(dwld_loc)
-    status = await upload_audio(client, message, out_loc)
+    tt = data['title']
+    status = await upload_audio(client, message, out_loc,tt)
     if status:
         time.sleep(3)
-        await upload_audio(client, message, out_loc)
+        await upload_audio(client, message, out_loc,tt)
 
 async def extract_subtitle(client, message, data):
     await message.edit_text("Extracting Stream from file")
