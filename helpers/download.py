@@ -15,6 +15,7 @@ DATA = {}
 TT = ""
 
 async def download_file(client, message):
+    global TT
     media = message.reply_to_message
     if media.empty:
         await message.reply_text('Why did you delete that?? 😕', True)
@@ -94,7 +95,7 @@ async def download_file(client, message):
         )
 
 async def download_url_link(client, message):
-    
+    global TT
     m = message.reply_to_message
     link = m.text
     
