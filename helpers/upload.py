@@ -13,7 +13,7 @@ from helpers.progress import progress_func
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
-async def upload_audio(client, message, file_loc):
+async def upload_audio(client, message, file_loc, tt):
 
     msg = await message.edit_text(
         text="**Uploading extracted stream...**",
@@ -21,7 +21,7 @@ async def upload_audio(client, message, file_loc):
             [[InlineKeyboardButton(text="Progress", callback_data="progress_msg")]])
     )
 
-    title = None
+    title = tt
     artist = "حسن اللهیاری"
     duration = 0
 
