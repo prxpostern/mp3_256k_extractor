@@ -10,7 +10,6 @@ from hachoir.metadata import extractMetadata
 from helpers.download_from_url import get_size
 from helpers.tools import clean_up
 from helpers.progress import progress_func
-from helpers.download import TT
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 
@@ -22,7 +21,7 @@ async def upload_audio(client, message, file_loc):
             [[InlineKeyboardButton(text="Progress", callback_data="progress_msg")]])
     )
 
-    title = TT
+    title = None
     artist = "حسن اللهیاری"
     duration = 0
 
