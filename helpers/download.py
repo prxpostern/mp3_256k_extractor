@@ -21,13 +21,13 @@ async def download_file(client, message):
 
     if media.caption:
         if len(media.caption) <= 32:
-            TT = media.caption
+            tt = media.caption
     else:
-        TT = "@madresehahlebait"
+        tt = "@madresehahlebait"
         
     msg = await client.send_message(
         chat_id=message.chat.id,
-        text=f"**Downloading your file to server...**\n\n**Title:** `{TT}`",
+        text=f"**Downloading your file to server...**\n\n**Title:** `{tt}`",
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton(text="Check Progress", callback_data="progress_msg")]
         ]),
@@ -77,7 +77,7 @@ async def download_file(client, message):
             "type" : stream_type,
             "lang" : lang,
             "location" : download_location,
-            "title" : TT
+            "title" : tt
         }
         buttons.append([
             InlineKeyboardButton(
@@ -99,12 +99,12 @@ async def download_url_link(client, message):
     link = m.text
     
     if '|' in link:
-        link, TT = link.split('|')
+        link, tt = link.split('|')
         link = link.strip()
-        TT = TT.strip()
+        tt = tt.strip()
     else:
         link = link.strip()
-        TT = "@madresehahlebait"
+        tt = "@madresehahlebait"
     
     filename = os.path.basename(link)
     filename = filename.replace('%40','@')
@@ -112,7 +112,7 @@ async def download_url_link(client, message):
     
     msg = await client.send_message(
         chat_id=m.chat.id,
-        text=f"**Downloading your file to server...**\n\n**Title:** `{TT}`",
+        text=f"**Downloading your file to server...**\n\n**Title:** `{tt}`",
         reply_to_message_id=m.message_id
     )
     
@@ -154,7 +154,7 @@ async def download_url_link(client, message):
             "type" : stream_type,
             "lang" : lang,
             "location" : download_location,
-            "title" : TT
+            "title" : tt
         }
         buttons.append([
             InlineKeyboardButton(
