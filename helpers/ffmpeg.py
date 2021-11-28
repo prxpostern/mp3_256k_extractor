@@ -12,7 +12,7 @@ async def extract_audio(client, message, data):
     dwld_loc = data['location']
     out_loc = data['location'] + ".mp3"
 
-    out, err, rcode, pid = await execute(f"ffmpeg -i \"{dwld_loc}\" -map 0:{data['map']} -af \"pan=stereo|c0=c0|c1=c0\" -ar 48000 -ab 256k -f mp3 \"{out_loc}\" -y")
+    out, err, rcode, pid = await execute(f"ffmpeg -i \"{dwld_loc}\" -map 0:{data['map']} -af \"pan=stereo|c0=c1|c1=c1\" -ar 48000 -ab 256k -f mp3 \"{out_loc}\" -y")
     if rcode != 0:
         await message.edit_text(f"**(mp3 256k) - Error Occured.\n\n{err}**")
         print(err)
