@@ -6,7 +6,7 @@
 from helpers.tools import execute, clean_up
 from helpers.upload import upload_audio, upload_subtitle
 
-async def extract_audio(client, message, data):
+async def extract_audio(client, message, data, title):
     await message.edit_text("Extracting Stream from file...")
 
     dwld_loc = data['location']
@@ -25,7 +25,7 @@ async def extract_audio(client, message, data):
     if status:
         await msg.edit_text(f"**Trying again in 3 seconds...**")
         time.sleep(3)
-        await upload_audio(client, message, out_loc)
+        await upload_audio(client, message, out_loc, title)
 
 async def extract_subtitle(client, message, data):
     await message.edit_text("Extracting Stream from file")
