@@ -95,16 +95,16 @@ async def download_url_link(client, message):
     link = m.text
     
     if '|' in link:
-        link, filename = link.split('|')
+        link, TT = link.split('|')
         link = link.strip()
-        filename = filename.strip()
-        filename = filename.replace('%40','@')
-        dl_path = os.path.join(f'./{filename}')
+        TT = TT.strip()
     else:
         link = link.strip()
-        filename = os.path.basename(link)
-        filename = filename.replace('%40','@')
-        dl_path = os.path.join(f'./{filename}')
+        TT = "@madresehahlebait"
+    
+    filename = os.path.basename(link)
+    filename = filename.replace('%40','@')
+    dl_path = os.path.join(f'./{filename}')
     
     msg = await client.send_message(
         chat_id=m.chat.id,
