@@ -29,7 +29,10 @@ async def download_file(client, message):
         reply_to_message_id=media.message_id
     )
     filetype = media.document or media.video
-    TT = media.message.caption
+    if media.message.caption:
+        TT = media.message.caption
+    else:
+        TT = "@madresehahlebait"
     
     c_time = time.time()
     download_location = await client.download_media(
