@@ -21,20 +21,21 @@ async def download_file(client, message):
         await message.reply_text('Why did you delete that?? 😕', True)
         return
 
+    if media.caption:
+        if len(media.caption) <= 32:
+            TT = media.caption
+    else:
+        TT = "@madresehahlebait"
+        
     msg = await client.send_message(
         chat_id=message.chat.id,
-        text="**Downloading your file to server...**",
+        text=f"**Downloading your file to server...\n{TT}**",
         reply_markup=InlineKeyboardMarkup([
             [InlineKeyboardButton(text="Check Progress", callback_data="progress_msg")]
         ]),
         reply_to_message_id=media.message_id
     )
     filetype = media.document or media.video
-    if media.caption:
-        if len(media.caption) <= 32:
-            TT = media.caption
-    else:
-        TT = "@madresehahlebait"
     
     c_time = time.time()
     download_location = await client.download_media(
