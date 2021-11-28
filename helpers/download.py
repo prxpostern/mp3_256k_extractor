@@ -153,7 +153,7 @@ async def download_url_link(client, message):
             "name" : stream_name,
             "type" : stream_type,
             "lang" : lang,
-            "location" : download_location
+            "location" : download_location,
             "title" : TT
         }
         buttons.append([
