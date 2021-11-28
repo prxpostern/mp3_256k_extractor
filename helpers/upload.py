@@ -23,8 +23,7 @@ async def upload_audio(client, message, file_loc):
     )
 
     title = None
-    artist = None
-    thumb = None
+    artist = "حسن اللهیاری"
     duration = 0
 
     metadata = extractMetadata(createParser(file_loc))
