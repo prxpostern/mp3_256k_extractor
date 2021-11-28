@@ -12,10 +12,8 @@ from helpers.tools import execute, clean_up
 from helpers.download_from_url import download_link
 
 DATA = {}
-TT = ""
 
 async def download_file(client, message):
-    global TT
     media = message.reply_to_message
     if media.empty:
         await message.reply_text('Why did you delete that?? 😕', True)
@@ -78,7 +76,8 @@ async def download_file(client, message):
             "name" : stream_name,
             "type" : stream_type,
             "lang" : lang,
-            "location" : download_location
+            "location" : download_location,
+            "title" : TT
         }
         buttons.append([
             InlineKeyboardButton(
@@ -96,7 +95,6 @@ async def download_file(client, message):
         )
 
 async def download_url_link(client, message):
-    global TT
     m = message.reply_to_message
     link = m.text
     
@@ -156,6 +154,7 @@ async def download_url_link(client, message):
             "type" : stream_type,
             "lang" : lang,
             "location" : download_location
+            "title" : TT
         }
         buttons.append([
             InlineKeyboardButton(
