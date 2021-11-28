@@ -28,21 +28,14 @@ async def upload_audio(client, message, file_loc):
     duration = 0
 
     metadata = extractMetadata(createParser(file_loc))
-    if metadata and metadata.has("title"):
-        title = metadata.get("title")
-    if metadata and metadata.has("artist"):
-        artist = metadata.get("artist")
     if metadata and metadata.has("duration"):
         duration = metadata.get("duration").seconds
     
     fn = os.path.basename(file_loc)
-    ex = os.path.splitext(fn)[1]
     fn = os.path.splitext(fn)[0]
     fn = os.path.splitext(fn)[0]
-    if ex == ".aac" or ex == ".mp3":
-        fn = fn + ex
-    else:
-        fn = fn + ".mka"
+    fn = fn + ".mp3"
+
     size = os.path.getsize(file_loc)
     size = get_size(size)
     
@@ -52,7 +45,6 @@ async def upload_audio(client, message, file_loc):
             chat_id=message.chat.id,
             audio=file_loc,
             file_name=str(fn),
-            thumb=thumb,
             caption=f"`{fn}` [{size}]",
             title=title,
             performer=artist,
@@ -66,12 +58,12 @@ async def upload_audio(client, message, file_loc):
         )
     except Exception as e:
         print(e)     
-        await msg.edit_text("**Some Error Occurred. See Logs for More Info.**")   
-        return
+        await msg.edit_text(f"**Some Error Occurred.\n\n{e}**")   
+        return True
 
     await msg.delete()
     await clean_up(file_loc)    
-
+    return False
 
 async def upload_subtitle(client, message, file_loc):
 
