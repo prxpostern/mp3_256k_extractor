@@ -56,8 +56,7 @@ async def download_coroutine(session, url, file_name, event, start, bot):
                 url,
                 os.path.basename(file_name).replace("%20", " "),
                 get_size(total_length),
-            ),
-            parse_mode="md",
+            )
         )
         with open(file_name, "wb") as f_handle:
             while True:
