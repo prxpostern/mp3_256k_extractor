@@ -20,6 +20,7 @@ async def download_file(client, message):
         return
 
     filetype = media.document or media.video
+    tt = "EmptyTITLEdetected"
     
     if media.caption:
         if len(media.caption) <= 32:
@@ -27,8 +28,6 @@ async def download_file(client, message):
     elif filetype.file_name :
         if '@madresehahlebait' in filetype.file_name :
             tt = "@madresehahlebait"
-    else:
-        tt = None
         
     msg = await client.send_message(
         chat_id=message.chat.id,
