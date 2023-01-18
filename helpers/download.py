@@ -19,11 +19,16 @@ async def download_file(client, message):
         await message.reply_text('Why did you delete that?? 😕', True)
         return
 
+    filetype = media.document or media.video
+    
     if media.caption:
         if len(media.caption) <= 32:
             tt = media.caption
+    elif filetype.file_name :
+        if '@madresehahlebait' in filetype.file_name :
+            tt = "@madresehahlebait"
     else:
-        tt = "@madresehahlebait"
+        tt = None
         
     msg = await client.send_message(
         chat_id=message.chat.id,
@@ -33,7 +38,6 @@ async def download_file(client, message):
         ]),
         reply_to_message_id=media.id
     )
-    filetype = media.document or media.video
     
     c_time = time.time()
     download_location = await client.download_media(
@@ -104,7 +108,7 @@ async def download_url_link(client, message):
         tt = tt.strip()
     else:
         link = link.strip()
-        tt = "@madresehahlebait"
+        tt = None
     
     filename = os.path.basename(link)
     filename = filename.replace('%40','@')
