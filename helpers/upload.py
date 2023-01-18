@@ -21,7 +21,11 @@ async def upload_audio(client, message, file_loc, tt):
             [[InlineKeyboardButton(text="Progress", callback_data="progress_msg")]])
     )
 
-    title = tt
+    if tt == "EmptyTITLEdetected":
+        title = None
+    else:
+        title = tt
+    
     artist = None
     duration = 0
 
