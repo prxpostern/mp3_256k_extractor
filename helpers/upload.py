@@ -22,7 +22,7 @@ async def upload_audio(client, message, file_loc, tt):
     )
 
     title = tt
-    artist = "حسن اللهیاری"
+    artist = None
     duration = 0
 
     metadata = extractMetadata(createParser(file_loc))
@@ -33,6 +33,9 @@ async def upload_audio(client, message, file_loc, tt):
     fn = os.path.splitext(fn)[0]
     fn = os.path.splitext(fn)[0]
     fn = fn + ".mp3"
+    
+    if '@madresehahlebait' in fn :
+        artist = "استاد حسن اللهیاری"
 
     size = os.path.getsize(file_loc)
     size = get_size(size)
